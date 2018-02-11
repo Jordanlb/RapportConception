@@ -1,0 +1,235 @@
+\makeatletter
+
+	\usepackage[french]{babel}
+	\usepackage[utf8]{inputenc}
+	\usepackage[T1]{fontenc}
+	
+	
+	\usepackage%
+		{xcolor}
+	
+	\usepackage{xkeyval}
+	\usepackage{geometry}
+	\usepackage{graphicx}
+	\usepackage{lipsum}
+	\usepackage{xspace}			
+	\usepackage{lmodern} 
+    \usepackage{titling}
+	\usepackage{sectsty}
+	
+	\usepackage{csquotes}
+
+
+	
+	\definecolorset{HTML}{}{}{belux,900A40;underbelux,AA526A;antibelux,000000}	% 
+	
+	
+	\allsectionsfont{\color{black}}					
+	\partfont{\color{belux}}						
+	\chapterfont{\color{belux}}						
+	\sectionfont{\color{belux}}						
+	\subsectionfont{\color{belux}}					
+	\subsubsectionfont{\color{underbelux}}				
+	
+
+
+
+%---------------------------
+%% GEOMETRY MANAGEMENT
+
+	\def\definegeometry#1#2{									%%
+		\define@key{modelgeometries}{#1}[]{\geometry{#2}}			%%
+		\define@key{setgeometrykeys}{#1}[]{\newgeometry{#2}}		%%
+	}
+
+
+	%%--------------------- \setmodelgeometry
+
+	\newcommand{\setmodelgeometry}[1]{
+		\setkeys{modelgeometries}{#1}
+	}
+
+
+	%%--------------------- setgeometry environment
+
+	\newenvironment{setgeometry}[1]
+		{\setkeys{setgeometrykeys}{#1}}
+		{\restoregeometry}
+
+
+	
+	
+
+	%% GEOMETRIES LIBRARY
+	%%-------------------
+
+	\definegeometry{math}			%% MATH
+		{					
+			inner=90pt,		
+			bottom=65pt,
+			top=65pt,
+			outer=70pt			
+		}
+	
+	\definegeometry{cover}			%% COVER - used in front_management
+	{					
+		top=3.5cm,			
+		bottom=0cm,			
+		inner= 0.6cm,		
+		outer=0.6cm			
+	}
+	
+	\setmodelgeometry{math}
+	
+	
+\makeatother
+
+
+%------------------
+%------------------
+
+
+%% PACKAGES
+%\usepackage{caption,subcaption}
+%	\captionsetup{singlelinecheck=off}
+
+\usepackage{hhline}
+\usepackage{eurosym}
+
+\usepackage{tgcursor}
+
+%%
+\usepackage{appendix}
+	\makeatletter
+	%	\@addtoreset{chapter}{part}
+		\@addtoreset{@ppsaveapp}{part}
+	\makeatother
+
+\usepackage[hidelinks]{hyperref}
+
+
+\addto\captionsfrench{\renewcommand{\chaptername}{Partie}}
+
+
+%\ExecuteBibliographyOptions{
+%datamodel=NE_PAS_TOUCHER/mynote.dbx,
+%}
+\usepackage[
+	%backend=biber,
+ 	style=numeric,
+  	%citestyle=authoryear,
+  	sorting=none,
+    datamodel=NE_PAS_TOUCHER/mynote.dbx,
+]{biblatex}
+%\DeclareDatamodelFields[type=field,datatype=literal]{mynote}
+\usepackage{xpatch}
+\xapptobibmacro{finentry}{\par\printfield{mynote}}{}{}
+
+
+%% COVER PREAMBLE
+
+
+\usepackage{latexsym} % anciens symboles latex
+\usepackage{makeidx}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{float}
+\usepackage{epsfig}
+\usepackage{vmargin}
+\usepackage{textpos}
+\usepackage{color}
+\usepackage{letterspace}
+\usepackage{fancybox}
+
+\setlength{\hoffset}{0cm}
+\setlength{\voffset}{0cm}
+\setlength{\paperheight}{29.7cm}
+\setlength{\paperwidth}{21cm}
+\setlength{\textwidth}{14.5cm}
+\setlength{\marginparwidth}{0cm}
+\setlength{\headheight}{2\baselineskip}
+\setlength{\textheight}{21cm}
+\setlength{\evensidemargin}{0cm}
+\setlength{\oddsidemargin}{1.5cm}
+
+
+%% Listings
+\usepackage{listings}
+\lstset{								% general command to set parameter(s)
+	basicstyle=\ttfamily\small, 				% print whole listing small 
+	keywordstyle=\color{black}\bfseries\underbar, 	% underlined bold black keywords 
+	identifierstyle=, 					% nothing happens 
+%	commentstyle=\color{white}, 				% white comments 
+	stringstyle=\ttfamily, 					% typewriter type for strings 
+	showstringspaces=false,
+	numbers=left,
+	numberstyle=\tiny\ttfamily,
+	language=Java,
+	tabsize=4,
+	literate={{é}{{\'e}}1 {è}{{\`e}}1 {ê}{{\^e}}1 {à}{{\`a}}1 {œ}{{\oe}}1},
+	xleftmargin=0pt,
+	keywordstyle=\bfseries\color{underbelux},
+	literate=							%
+			{<-}{{$\leftarrow$}}{1}		%
+			{<--}{{$\longleftarrow$}}{1}%
+			{->}{{$\rightarrow$}}{1}	%
+			{<->}{{$\leftrightarrow$}}{3}	%
+			{-->}{{$\longrightarrow$}}{3}	%
+			{<-->}{{$\longleftrightarrow$}}{4}	%
+			{-|>}{{$\nrightarrow$}}{1}	%
+			{+*}{{$\times$}}{1} 		%
+			{A/}{{$\forall$}}{1}		%
+			{é}{{\'e}}{1}				%
+			{è}{{\`e}}{1}				%
+			{ê}{{\^e}}{1} 				%
+			{à}{{\`a}}{1}				%
+			{É}{{\'E}}{1}				%
+			{’}{{'}}{1}
+	}
+
+
+\lstdefinelanguage{pseudocode}
+{
+% list of keywords
+morekeywords={
+si, sinon, finsi, fsi, alors,
+tantque, while, tant, que,
+for, do, fintantque,fin, pour,
+fonction, renvoyer, appeler,
+TAD, fonctions, utilise, preconditions, 
+booleen, entier
+},
+sensitive=false, % keywords are not case-sensitive
+morecomment=[l]{//}, % l is for line comment
+morecomment=[s]{/*}{*/}, % s is for start and end delimiter
+morestring=[b]", % defines that strings are enclosed in double quotes
+keywordstyle=\bfseries\color{darkgray}
+}
+
+\lstdefinelanguage{json}
+{
+	string=[s]{"}{"},
+    stringstyle=\color{underbelux},
+	morecomment=[l]{:},
+	commentstyle=\color{black},
+}
+
+
+\newcommand{\displaycode}[2][]{\begin{center}\lstinline[mathescape,#1]^#2^ \end{center}}
+	
+
+%% DEFINITIONS
+
+
+\def\cad{c'est-à-dire}
+\def\ie{\emph{i.e.}}
+\def\guy#1{\textcolor{blue}{\bfseries #1}}
+
+
+
+
+
+
+
+
+

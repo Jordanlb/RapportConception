@@ -1,0 +1,70 @@
+\documentclass[a4paper,12pt,twoside]{report}
+
+	\input{NE_PAS_TOUCHER/preamble.tex}
+
+
+
+
+	\pretitle{\Huge \begin{center} \bfseries \color{belux}}
+	\title{Rapport de pré-étude \\[4mm] {Projet e-yaka}}
+	\date{\today}
+	\author{
+		Jason \textsc{Barrier} \and
+		Quentin \textsc{Bigot} \and
+		Jordan \textsc{Le Bongoat} \and
+		Tom \textsc{Richardon} 
+	}
+	\widowpenalty10000
+	\setlength{\parskip}{4pt}
+
+  %\bibliography{filename}
+\begin{document}
+	
+	{
+		\pagestyle{empty}
+		\input{./SOURCES/cover.tex}
+		%\cleardoublepage		
+	}
+
+	\newgeometry{top=2cm,bottom=2cm,inner=3cm,outer=2cm}
+	{
+		\pagestyle{empty}
+	%	\maketitle
+		\tableofcontents
+        \thispagestyle{empty}
+    %  	\input{./SOURCES/abstract.tex}
+	%	\listoffigures
+        \begingroup
+        \let\clearpage\relax
+        %\listoftables
+        \endgroup
+        \thispagestyle{empty}
+		\cleardoublepage
+	}
+		
+	
+
+  			\input{./SOURCES/introduction.tex}
+   			\input{./SOURCES/p1_contexte.tex}  
+			\input{./SOURCES/p2_archi_logicielle.tex}
+   			\input{./SOURCES/p3_changements_appli.tex}
+  			\input{./SOURCES/conclusion.tex}
+		\cleardoublepage 
+   	%     \nocite{*}
+  	%      \bibliographystyle{acm}
+    % 	\printbibliography
+      
+      
+      \pagestyle{empty}
+      \cleardoublepage~
+      \newpage
+      ~\vspace{5cm}
+      \thispagestyle{empty}
+      
+      \begin{center}
+      %	\textbf{Abstract}
+      \end{center}
+	  % quatrième de couv
+
+        
+\end{document}
